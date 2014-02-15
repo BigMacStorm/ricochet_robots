@@ -37,7 +37,7 @@ struct robot{
     // read in maps
     void readInMap();
     // display
-    void display(int sent, 
+    void display(int sent,
                   robot &redBot, 
                   robot &orangeBot, 
                   robot &blueBot, 
@@ -45,7 +45,12 @@ struct robot{
                   robot &yellowBot);
     // check if win
     // populate board
-    bool won();
+    bool win(int sent, robot &redBot, 
+                  robot &orangeBot, 
+                  robot &blueBot, 
+                  robot &greenBot, 
+                  robot &yellowBot);
+                  
     void populate(robot &redBot, 
                   robot &orangeBot, 
                   robot &blueBot, 
@@ -82,7 +87,7 @@ int main()
         while(numTokes > 0)
         {
             // Display
-            display(redBot, orangeBot, blueBot, greenBot, yellowBot);
+            display(tokenArray[numTokes-1], redBot, orangeBot, blueBot, greenBot, yellowBot);
             // Get command
             cout << "Enter move: ";
             cin >> color;
@@ -118,10 +123,9 @@ int main()
             // update
             updateMap(oldx, oldy, newx, newy);
             // Check if win
-            if(win(tokenArray[numTokes-1]))
+            if(win(tokenArray[numTokes-1], redBot, orangeBot, blueBot, greenBot, yellowBot))
             {
-               numTokes--; 
-                             
+               numTokes--;                              
             }
          }
       cout << "Play Again? : ";
@@ -308,7 +312,7 @@ bool move(robot &sent, char direction, int &newx, int &newy)
 {
    char color = sent.robColor;
    bool end = false;
-   if(direction = 'u')
+   if(direction == 'u')
    {
       while((!(board[sent.yPos][sent.xPos].up)) && (!(board[sent.yPos-1][sent.xPos].hasRobot)))
       {
@@ -316,7 +320,7 @@ bool move(robot &sent, char direction, int &newx, int &newy)
       }
    }
    
-   if(direction = 'd')
+   if(direction == 'd')
    {
       while((!(board[sent.yPos][sent.xPos].down)) && (!(board[sent.yPos+1][sent.xPos].hasRobot)))
       {
@@ -324,7 +328,7 @@ bool move(robot &sent, char direction, int &newx, int &newy)
       }      
    }
    
-   if(direction = 'l')
+   if(direction == 'l')
    {
       while((!(board[sent.yPos][sent.xPos].left)) && (!(board[sent.yPos][sent.xPos-1].hasRobot)))
       {
@@ -332,9 +336,9 @@ bool move(robot &sent, char direction, int &newx, int &newy)
       }      
    }
    
-   if(direction = 'u')
+   if(direction == 'r')
    {
-      while((!(board[sent.yPos][sent.xPos].left)) && (!(board[sent.yPos][sent.xPos+1].hasRobot)))
+      while((!(board[sent.yPos][sent.xPos].right)) && (!(board[sent.yPos][sent.xPos+1].hasRobot)))
       {
          sent.xPos = sent.xPos+1;
       }       
@@ -348,4 +352,13 @@ void updateMap(int oldx, int oldy, int x, int y)
 {
    board[oldy][oldx].hasRobot = false;
    board[y][x].hasRobot = true;
+}
+
+bool win(int sent, robot &redBot, 
+                  robot &orangeBot, 
+                  robot &blueBot, 
+                  robot &greenBot, 
+                  robot &yellowBot)
+{
+   return false;
 }
