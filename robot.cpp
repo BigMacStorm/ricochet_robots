@@ -67,7 +67,7 @@ int main()
    char direction;
    int oldx, oldy, newx, newy;
    int numTokes = 17;
-   int tokenArray[17] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}
+   int tokenArray[17] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
    
    
     // Read the map(s)
@@ -123,7 +123,7 @@ int main()
             // update
             updateMap(oldx, oldy, newx, newy);
             // Check if win
-            if(win(tokenArray[numTokes-1]))
+            if(win(tokenArray[numTokes-1], redBot, orangeBot, blueBot, greenBot, yellowBot))
             {
                numTokes--;                              
             }
@@ -260,6 +260,7 @@ void display(int sent,
         }
         cout << endl;
     }
+    cout << (sent <= 9 ? sent : 'A' + (sent - 10));
 }
 
 void populate(robot &redBot, 
@@ -304,7 +305,7 @@ bool move(robot &sent, char direction, int &newx, int &newy)
 {
    char color = sent.robColor;
    bool end = false;
-   if(direction = 'u')
+   if(direction == 'u')
    {
       while((!(board[sent.yPos][sent.xPos].up)) && (!(board[sent.yPos-1][sent.xPos].hasRobot)))
       {
@@ -312,7 +313,7 @@ bool move(robot &sent, char direction, int &newx, int &newy)
       }
    }
    
-   if(direction = 'd')
+   if(direction == 'd')
    {
       while((!(board[sent.yPos][sent.xPos].down)) && (!(board[sent.yPos+1][sent.xPos].hasRobot)))
       {
@@ -320,7 +321,7 @@ bool move(robot &sent, char direction, int &newx, int &newy)
       }      
    }
    
-   if(direction = 'l')
+   if(direction == 'l')
    {
       while((!(board[sent.yPos][sent.xPos].left)) && (!(board[sent.yPos][sent.xPos-1].hasRobot)))
       {
@@ -328,9 +329,9 @@ bool move(robot &sent, char direction, int &newx, int &newy)
       }      
    }
    
-   if(direction = 'u')
+   if(direction == 'r')
    {
-      while((!(board[sent.yPos][sent.xPos].left)) && (!(board[sent.yPos][sent.xPos+1].hasRobot)))
+      while((!(board[sent.yPos][sent.xPos].right)) && (!(board[sent.yPos][sent.xPos+1].hasRobot)))
       {
          sent.xPos = sent.xPos+1;
       }       
