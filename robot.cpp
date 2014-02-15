@@ -8,27 +8,45 @@ using namespace std;
 // robot struct
     // x and y and color
     
+struct robot{
+   int xPos;
+   int yPos;
+   char robColor;
+   
+   robot(int x, int y, char color)
+   {
+      xPos = x;
+      yPos = y;
+      robColor = color;
+   }
+};
+    
 // Functions
     // move
+    bool move(char color, char direction);
     // read in maps
     // display
     // check if win
+    bool won();
+    void populate(robot &redBot, 
+                  robot &orangeBot, 
+                  robot &blueBot, 
+                  robot &greenBot, 
+                  robot &yellowBot);
 
 int main()
 {
-<<<<<<< HEAD
-    int x, y, z;
-    cout << "hello world!" << endl;
-=======
+   
     // Read the map(s)
     // Create all objects
->>>>>>> 279a7621cb67626187b3b68b9f8dc533835e3530
+    robot redBot(-1, -1, 'r');
+    robot orangeBot(-1, -1, 'r');
+    robot blueBot(-1, -1, 'r');
+    robot greenBot(-1, -1, 'r');
+    robot yellowBot(-1, -1, 'r');
     
+    populate
     
-<<<<<<< HEAD
-    cout << "good job" << endl;
-    print();
-=======
     // Loop 1 start
         // Randomly choose goal
         // Loop start
@@ -36,7 +54,16 @@ int main()
             // Get command
             // Move (c, d)
             // Check if win
->>>>>>> 279a7621cb67626187b3b68b9f8dc533835e3530
     
     return 0;
+}
+
+
+void populate(robot &redBot, 
+              robot &orangeBot, 
+              robot &blueBot, 
+              robot &greenBot, 
+              robot &yellowBot)
+{
+   //put robots on board and shit
 }
