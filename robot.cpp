@@ -358,5 +358,32 @@ bool win(int sent, robot &redBot,
                   robot &greenBot, 
                   robot &yellowBot)
 {
+   switch(sent)
+   {
+      case 2:
+      case 5:
+      case 12:
+      case 16:
+         if(board[redBot.yPos][redBot.xPos].token == sent) return true;
+         break;
+      case 1:
+      case 4:
+      case 10:
+      case 11:
+         if(board[blueBot.yPos][blueBot.xPos].token == sent) return true;
+         break;
+      case 6:
+      case 7:
+      case 13:
+      case 17:
+         if(board[greenBot.yPos][greenBot.xPos].token == sent) return true;
+         break;
+      case 8:
+      case 9:
+      case 14:
+      case 15:
+         if(board[yellowBot.yPos][yellowBot.xPos].token == sent) return true;
+         break;
+   }   
    return false;
 }
