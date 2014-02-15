@@ -10,6 +10,8 @@ ur=5
 dr=6
 dl=7
 ul=8
+ud=9
+lr=10
 
 Spots
 =====
@@ -17,6 +19,19 @@ Spots
 2=red triangle
 3=wild
 4=blue star
+5=red star
+6=red moon
+7=green sphere
+8=yellow sphere
+9=yellow moon
+10=blue sphere
+11=blue triangle
+12=red circle
+13=green star
+14=yello star
+15=yellow circle
+16=red square
+17=green triangle
 
 
 http://www.themineshaftgap.com/blog/wp-content/uploads/2007/06/MSG07060305.jpg
