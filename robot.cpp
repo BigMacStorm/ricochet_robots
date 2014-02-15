@@ -100,7 +100,7 @@ int main()
             // Display
             display(tokenArray[numTokes-1], redBot, orangeBot, blueBot, greenBot, yellowBot);
             // Get command
-            cout << "Enter move: " << "┖";
+            cout << "Enter move: ";
             cin >> color;
             cin >> direction;
             switch(color)
@@ -256,7 +256,7 @@ void display(int sent,
                 
                 cout << (*(bots[i])).robColor;
             }
-            cout << " ";
+            cout << ".";
         }
         cout << endl;
     }
