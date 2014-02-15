@@ -146,16 +146,10 @@ void readInMap()
     int tokes;
     char dummy;
     
-    cout << "reading in data" << endl;
     fin >> cellContents;
-    cout << "got val " << cellContents << " for wall spot" << endl;
     fin >> dummy;
-    cout << "got val " << dummy << " for dummy" << endl;
     fin >> tokes;
-    cout << "got val " << tokes << " for wall spot" << endl;
     fin >> dummy;
-    cout << "got val " << dummy << " for dummy" << endl;
-    cin >> dummy;
     
     for(int row = 0; row < 16 && fin.good(); row++)
     {
@@ -260,14 +254,18 @@ void display(int sent,
         }
         cout << endl;
     }
+    
+    cout << "Goal: ";
+    
     if(sent <= 9)
     {
         cout << sent << " ";
     }
     else
     {
-        cout << 'A' + (sent - 10) << " ";
+        cout << (char)('A' + (sent - 10)) << " ";
     }
+    cout << endl << endl << "================================" << endl;
 }
 
 void populate(robot &redBot, 
