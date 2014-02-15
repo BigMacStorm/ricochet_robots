@@ -256,7 +256,14 @@ void display(int sent,
         }
         cout << endl;
     }
-    cout << (sent <= 9 ? sent : 'A' + (sent - 10));
+    if(sent <= 9)
+    {
+        cout << sent << " ";
+    }
+    else
+    {
+        cout << 'A' + (sent - 10) << " ";
+    }
 }
 
 void populate(robot &redBot, 
