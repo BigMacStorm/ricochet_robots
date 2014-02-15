@@ -37,7 +37,11 @@ struct robot{
     // read in maps
     void readInMap();
     // display
-    void display();
+    void display(robot &redBot, 
+                  robot &orangeBot, 
+                  robot &blueBot, 
+                  robot &greenBot, 
+                  robot &yellowBot);
     // check if win
     // populate board
     bool won();
@@ -73,7 +77,7 @@ int main()
         // Randomly choose goal
         // Loop start
             // Display
-            display();
+            display(redBot, orangeBot, blueBot, greenBot, yellowBot);
             // Get command
             cout << "Enter move: ";
             cin >> color;
@@ -191,12 +195,25 @@ void readInMap()
     fin.close();
 }
 
-void display()
+void display(robot &redBot, 
+             robot &orangeBot, 
+             robot &blueBot, 
+             robot &greenBot, 
+             robot &yellowBot)
 {
     char walls[11] = {' ', '^', '_', ']', (char)221, (char)191, (char)217, 
                       192, 218, '=', 186};
+                      
     char tokens[18] = {' ', '1','2','3','4','5','6','7','8','9',
                        'A','B','C','D','E','F','G','H'};
+    
+   robot* redPtr = &redBot;
+   robot* orangePtr = &orangeBot;
+   robot* bluePtr = &blueBot;
+   robot* greenPtr = &greenBot;
+   robot* yellowPtr = &yellowBot;
+   
+   robot* bots[5] = {redPtr, orangePtr, bluePtr, greenPtr, yellowPtr};
     
     cout << endl << endl;
     
@@ -204,13 +221,24 @@ void display()
     {
         for(int col = 0; col < 16; col++)
         {
-            if(board[row][col].token == 0)
+            if(board[row][col].token == 0 && board[row][col].hasRobot == false)
             {
                 cout << walls[board[row][col].walls];
             }
-            else
+            else if(board[row][col].token != 0 && 
+                    board[row][col].hasRobot == false)
             {
                 cout << tokens[board[row][col].token];
+            }
+            else
+            {
+                int i = 0;
+                while((*(bots[i])).xPos != col || (*(bots[i])).yPos != row)
+                {
+                    i++;
+                }
+                
+                cout << (*(bots[i])).robColor;
             }
             cout << "  ";
         }
