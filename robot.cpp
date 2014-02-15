@@ -14,6 +14,7 @@ struct cell
 {
     bool occupied;
     int token;
+    int walls;
     bool hasRobot, left, up, right, down;
 };
     
@@ -36,6 +37,7 @@ struct robot{
     // read in maps
     void readInMap();
     // display
+    void display();
     // check if win
     // populate board
     bool won();
@@ -171,6 +173,31 @@ void readInMap()
     }
     
     fin.close();
+}
+
+void display()
+{
+    char walls[11] = {' ', '_', 222, 221, 191, 217, 192, 218, '=', 186};
+    char tokens[18] = {' ', '1','2','3','4','5','6','7','8','9',
+                       'A','B','C','D','E','F','G','H'};
+    
+    cout << endl << endl;
+    
+    for(int row = 0; row < 16; row++)
+    {
+        for(int col = 0; col < 16; col++)
+        {
+            if(board[row][col].token == 0)
+            {
+                cout << walls[board[row][col].walls];
+            }
+            else
+            {
+                cout << tokens[board[row][col].token];
+            }
+        }
+        cout << endl;
+    }
 }
 
 void populate(robot &redBot, 
