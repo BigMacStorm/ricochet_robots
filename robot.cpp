@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
@@ -147,6 +149,34 @@ void populate(robot &redBot,
               robot &yellowBot)
 {
    //put robots on board and shit
+   srand(time(NULL));
+   
+   robot* redPtr = &redBot;
+   robot* orangePtr = &orangeBot;
+   robot* bluePtr = &blueBot;
+   robot* greenPtr = &greenBot;
+   robot* yellowPtr = &yellowBot;
+   
+   robot* bots[5] = {redPtr, orangePtr, bluePtr, greenPtr, yellowPtr};
+   
+   int thisX, thisY;
+   
+   for(int i = 0; i < 5; i++)
+   {
+       thisX = rand() % 16;
+       thisY = rand() % 16;
+       
+       while(!board[thisY][thisX].occupied)
+       {
+            thisX = rand() % 16;
+            thisY = rand() % 16;
+       }
+       
+       (*(bots[i])).xPos = thisX;
+       (*(bots[i])).yPos = thisY;
+       board[thisY][thisX].occupied = true;
+       board[thisY][thisX].hasRobot = true;
+   }
 }
 
 
