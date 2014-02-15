@@ -29,7 +29,7 @@ struct robot{
     
 // Functions
     // move
-    bool move(char color, char direction);
+    bool move(char color, char direction, int &newx, int &newy);
     // read in maps
     // display
     // check if win
@@ -40,10 +40,14 @@ struct robot{
                   robot &blueBot, 
                   robot &greenBot, 
                   robot &yellowBot);
+    void updateMap(char color, int oldx, int oldy, int x, int y);
 
 int main()
 {
    char temp;
+   char color;
+   char direction;
+   int oldx, oldy, newx, newy;
    
     // Read the map(s)
     // Create all objects
@@ -55,13 +59,24 @@ int main()
     
     populate(redBot, orangeBot, blueBot, greenBot, yellowBot);
     
-    while(temp != N)
+    while(temp != 'N')
     {
         // Randomly choose goal
         // Loop start
             // Display
             // Get command
+            cout << "Enter move: ";
+            cin >> color;
+            cin >> direction;
+            if(color == 'r'){oldx = redBot.xPos;oldy = redBot.yPos;}
+            if(color == 'o'){oldx = orangeBot.xPos;oldy =   orangeBot.yPos;}
+            if(color == 'b'){oldx = blueBot.xPos;oldy = blueBot.yPos;}
+            if(color == 'g'){oldx = greenBot.xPos;oldy = greenBot.yPos;}
+            if(color == 'y'){oldx = yellowBot.xPos;oldy = yellowBot.yPos;}
             // Move (c, d)
+            move(color, direction, newx, newy);
+            // update
+            updateMap(color, oldx, oldy, newx, newy);
             // Check if win
       cout << "Play Again? : ";
       cin >> temp;
@@ -78,4 +93,14 @@ void populate(robot &redBot,
               robot &yellowBot)
 {
    //put robots on board and shit
+}
+
+
+bool move(char color, char direction, int &newx, int &newy)
+{
+   return true;
+}
+
+void updateMap(char color, int oldx, int oldy, int x, int y)
+{
 }
