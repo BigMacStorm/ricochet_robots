@@ -5,25 +5,28 @@
 
 using namespace std;
 
-void print();
+// robot struct
+    // x and y and color
+    
+// Functions
+    // move
+    // read in maps
+    // display
+    // check if win
 
 int main()
 {
-<<<<<<< HEAD
-    int x, y, z;
-    cout << "hello world!" << endl;
+    // Read the map(s)
+    // Create all objects
     
-    cin >> x >> y >> z;
     
-    cout << "good job" << endl;
-=======
-   print();
->>>>>>> fa7d0b43d356c753ee35a83e9d7d32fc15f19946
+    // Loop 1 start
+        // Randomly choose goal
+        // Loop start
+            // Display
+            // Get command
+            // Move (c, d)
+            // Check if win
     
     return 0;
-}
-
-void print()
-{
-   cout << "print";
 }
