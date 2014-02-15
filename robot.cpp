@@ -37,7 +37,8 @@ struct robot{
     // read in maps
     void readInMap();
     // display
-    void display(robot &redBot, 
+    void display(int sent, 
+                  robot &redBot, 
                   robot &orangeBot, 
                   robot &blueBot, 
                   robot &greenBot, 
@@ -61,7 +62,7 @@ int main()
    char direction;
    int oldx, oldy, newx, newy;
    int numTokes = 17;
-   int tokenArray[17] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}
+   int tokenArray[17] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
    
    
     // Read the map(s)
@@ -205,7 +206,8 @@ void readInMap()
     fin.close();
 }
 
-void display(robot &redBot, 
+void display(int sent,
+             robot &redBot, 
              robot &orangeBot, 
              robot &blueBot, 
              robot &greenBot, 
@@ -254,6 +256,7 @@ void display(robot &redBot,
         }
         cout << endl;
     }
+    cout << (sent <= 9 ? sent : 'A' + (sent - 10));
 }
 
 void populate(robot &redBot, 
