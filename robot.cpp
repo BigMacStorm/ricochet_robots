@@ -37,14 +37,20 @@ struct robot{
     // read in maps
     void readInMap();
     // display
-    void display(robot &redBot, 
+    void display(int sent,
+                  robot &redBot, 
                   robot &orangeBot, 
                   robot &blueBot, 
                   robot &greenBot, 
                   robot &yellowBot);
     // check if win
     // populate board
-    bool won();
+    bool win(int sent, robot &redBot, 
+                  robot &orangeBot, 
+                  robot &blueBot, 
+                  robot &greenBot, 
+                  robot &yellowBot);
+                  
     void populate(robot &redBot, 
                   robot &orangeBot, 
                   robot &blueBot, 
@@ -81,7 +87,7 @@ int main()
         while(numTokes > 0)
         {
             // Display
-            display(redBot, orangeBot, blueBot, greenBot, yellowBot);
+            display(tokenArray[numTokes-1], redBot, orangeBot, blueBot, greenBot, yellowBot);
             // Get command
             cout << "Enter move: ";
             cin >> color;
@@ -119,8 +125,7 @@ int main()
             // Check if win
             if(win(tokenArray[numTokes-1]))
             {
-               numTokes--; 
-                             
+               numTokes--;                              
             }
          }
       cout << "Play Again? : ";
@@ -205,7 +210,8 @@ void readInMap()
     fin.close();
 }
 
-void display(robot &redBot, 
+void display(int sent,
+             robot &redBot, 
              robot &orangeBot, 
              robot &blueBot, 
              robot &greenBot, 
@@ -338,4 +344,13 @@ void updateMap(int oldx, int oldy, int x, int y)
 {
    board[oldy][oldx].hasRobot = false;
    board[y][x].hasRobot = true;
+}
+
+bool win(int sent, robot &redBot, 
+                  robot &orangeBot, 
+                  robot &blueBot, 
+                  robot &greenBot, 
+                  robot &yellowBot)
+{
+   return false;
 }
