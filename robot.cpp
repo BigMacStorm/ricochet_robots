@@ -58,7 +58,7 @@ int main()
     
     populate(redBot, orangeBot, blueBot, greenBot, yellowBot);
     
-    while(temp != N)
+    while(temp != 'N')
     {
         // Randomly choose goal
         // Loop start
