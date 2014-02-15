@@ -58,6 +58,7 @@ int main()
    int oldx, oldy, newx, newy;
    
     // Read the map(s)
+    readInMap();
     // Create all objects
     robot redBot(-1, -1, 'r');
     robot orangeBot(-1, -1, 'o');
@@ -72,6 +73,7 @@ int main()
         // Randomly choose goal
         // Loop start
             // Display
+            display();
             // Get command
             cout << "Enter move: ";
             cin >> color;
@@ -125,10 +127,16 @@ void readInMap()
     int tokes;
     char dummy;
     
+    cout << "reading in data" << endl;
     fin >> cellContents;
+    cout << "got val " << cellContents << " for wall spot" << endl;
     fin >> dummy;
+    cout << "got val " << dummy << " for dummy" << endl;
     fin >> tokes;
+    cout << "got val " << tokes << " for wall spot" << endl;
     fin >> dummy;
+    cout << "got val " << dummy << " for dummy" << endl;
+    cin >> dummy;
     
     for(int row = 0; row < 16 && fin.good(); row++)
     {
@@ -164,12 +172,19 @@ void readInMap()
                 board[row][col].down = true;
                 board[row][col].occupied = true;
             }
+    cout << "reading in data" << endl;
+    fin >> cellContents;
+    cout << "got val " << cellContents << " for wall spot" << endl;
+    fin >> dummy;
+    cout << "got val " << dummy << " for dummy" << endl;
+    fin >> tokes;
+    cout << "got val " << tokes << " for wall spot" << endl;
+    fin >> dummy;
+    cout << "got val " << dummy << " for dummy" << endl;
+    cin >> dummy;
         }
         
-        fin >> cellContents;
-        fin >> dummy;
-        fin >> tokes;
-        fin >> dummy;
+    
     }
     
     fin.close();
