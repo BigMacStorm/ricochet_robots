@@ -62,6 +62,7 @@ cell board[16][16];
 
 int main()
 {
+   srand(time(NULL));
    char temp;
    char color;
    char direction;
@@ -84,6 +85,16 @@ int main()
     while(temp != 'N')
     {
         // Randomly choose goal
+        for(int i = 0; i < 17; i++)
+        {
+            int swapWith = rand() % 17;
+            int temp;
+            
+            temp = tokenArray[i];
+            tokenArray[i] = tokenArray[swapWith];
+            tokenArray[swapWith] = temp;
+        }
+        
         while(numTokes > 0)
         {
             // Display
@@ -186,16 +197,10 @@ void readInMap()
                 board[row][col].down = true;
                 board[row][col].occupied = true;
             }
-    //cout << "reading in data" << endl;
     fin >> cellContents;
-    //cout << "got val " << cellContents << " for wall spot" << endl;
     fin >> dummy;
-    //cout << "got val " << dummy << " for dummy" << endl;
     fin >> tokes;
-    //cout << "got val " << tokes << " for wall spot" << endl;
     fin >> dummy;
-    //cout << "got val " << dummy << " for dummy" << endl;
-    //cin >> dummy;
         }
         
     
@@ -211,9 +216,10 @@ void display(int sent,
              robot &greenBot, 
              robot &yellowBot)
 {
-    char walls[11] = {' ', '^', '_', ']', (char)221, (char)191, (char)217, 
-                      192, 218, '=', 186};
-                      
+    string walls[11] = {" ", "‾", "_", "⎹", "⎸", "⌝", "⌟", 
+                      "⌞", "⌜", "二", "||"};
+                 
+                    
     char tokens[18] = {' ', '1','2','3','4','5','6','7','8','9',
                        'A','B','C','D','E','F','G','H'};
     
@@ -250,7 +256,7 @@ void display(int sent,
                 
                 cout << (*(bots[i])).robColor;
             }
-            cout << "  ";
+            cout << " ";
         }
         cout << endl;
     }
@@ -275,8 +281,6 @@ void populate(robot &redBot,
               robot &yellowBot)
 {
    //put robots on board and shit
-   srand(time(NULL));
-   
    robot* redPtr = &redBot;
    robot* orangePtr = &orangeBot;
    robot* bluePtr = &blueBot;
