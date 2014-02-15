@@ -58,6 +58,7 @@ int main()
    int oldx, oldy, newx, newy;
    
     // Read the map(s)
+    readInMap();
     // Create all objects
     robot redBot(-1, -1, 'r');
     robot orangeBot(-1, -1, 'o');
@@ -72,6 +73,7 @@ int main()
         // Randomly choose goal
         // Loop start
             // Display
+            display();
             // Get command
             cout << "Enter move: ";
             cin >> color;
@@ -136,6 +138,7 @@ void readInMap()
         {
             board[row][col].occupied = false;
             board[row][col].token = tokes;
+            board[row][col].walls = cellContents;
             
             if(cellContents == 4 || cellContents == 7 ||
                cellContents == 8 || cellContents == 10)
@@ -177,7 +180,7 @@ void readInMap()
 
 void display()
 {
-    char walls[11] = {' ', '_', 222, 221, 191, 217, 192, 218, '=', 186};
+    char walls[11] = {' ', '^', '_', 222, 221, 191, 217, 192, 218, '=', 186};
     char tokens[18] = {' ', '1','2','3','4','5','6','7','8','9',
                        'A','B','C','D','E','F','G','H'};
     
@@ -189,7 +192,7 @@ void display()
         {
             if(board[row][col].token == 0)
             {
-                cout << walls[board[row][col].walls];
+                cout << walls[board[row][col].walls-1];
             }
             else
             {
