@@ -46,7 +46,7 @@ struct robot{
                   robot &blueBot, 
                   robot &greenBot, 
                   robot &yellowBot);
-    void updateMap(char color, int oldx, int oldy, int x, int y);
+    void updateMap(int oldx, int oldy, int x, int y);
 
 cell board[16][16];
 
@@ -56,6 +56,9 @@ int main()
    char color;
    char direction;
    int oldx, oldy, newx, newy;
+   int numTokes = 17;
+   int tokenArray[17] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17}
+   
    
     // Read the map(s)
     readInMap();
@@ -71,7 +74,8 @@ int main()
     while(temp != 'N')
     {
         // Randomly choose goal
-        // Loop start
+        while(numTokes > 0)
+        {
             // Display
             display();
             // Get command
@@ -107,8 +111,14 @@ int main()
                   break;
              }
             // update
-            updateMap(color, oldx, oldy, newx, newy);
+            updateMap(oldx, oldy, newx, newy);
             // Check if win
+            if(win(tokenArray[numTokes-1]))
+            {
+               numTokes--; 
+                             
+            }
+         }
       cout << "Play Again? : ";
       cin >> temp;
     }
@@ -291,10 +301,13 @@ bool move(robot &sent, char direction, int &newx, int &newy)
          sent.xPos = sent.xPos+1;
       }       
    }
-   
+   newx = sent.xPos;
+   newy = sent.yPos;
    return true;
 }
 
-void updateMap(char color, int oldx, int oldy, int x, int y)
+void updateMap(int oldx, int oldy, int x, int y)
 {
+   board[oldy][oldx].hasRobot = false;
+   board[y][x].hasRobot = true;
 }
