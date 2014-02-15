@@ -33,40 +33,39 @@ struct robot{
     // read in maps
     // display
     // check if win
-<<<<<<< HEAD
     // populate board
-=======
     bool won();
     void populate(robot &redBot, 
                   robot &orangeBot, 
                   robot &blueBot, 
                   robot &greenBot, 
                   robot &yellowBot);
->>>>>>> 130eb2a13c45807f43c471a50a72ef59ebc20f36
 
 int main()
 {
+   char temp;
    
     // Read the map(s)
     // Create all objects
-<<<<<<< HEAD
-=======
     robot redBot(-1, -1, 'r');
     robot orangeBot(-1, -1, 'r');
     robot blueBot(-1, -1, 'r');
     robot greenBot(-1, -1, 'r');
     robot yellowBot(-1, -1, 'r');
     
-    populate
+    populate(redBot, orangeBot, blueBot, greenBot, yellowBot);
     
->>>>>>> 130eb2a13c45807f43c471a50a72ef59ebc20f36
-    // Loop 1 start
+    while(temp != N)
+    {
         // Randomly choose goal
         // Loop start
             // Display
             // Get command
             // Move (c, d)
             // Check if win
+      cout << "Play Again? : ";
+      cin >> temp;
+    }
     
     return 0;
 }
