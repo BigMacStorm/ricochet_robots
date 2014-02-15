@@ -173,16 +173,16 @@ void readInMap()
                 board[row][col].down = true;
                 board[row][col].occupied = true;
             }
-    cout << "reading in data" << endl;
+    //cout << "reading in data" << endl;
     fin >> cellContents;
-    cout << "got val " << cellContents << " for wall spot" << endl;
+    //cout << "got val " << cellContents << " for wall spot" << endl;
     fin >> dummy;
-    cout << "got val " << dummy << " for dummy" << endl;
+    //cout << "got val " << dummy << " for dummy" << endl;
     fin >> tokes;
-    cout << "got val " << tokes << " for wall spot" << endl;
+    //cout << "got val " << tokes << " for wall spot" << endl;
     fin >> dummy;
-    cout << "got val " << dummy << " for dummy" << endl;
-    cin >> dummy;
+    //cout << "got val " << dummy << " for dummy" << endl;
+    //cin >> dummy;
         }
         
     
@@ -193,7 +193,8 @@ void readInMap()
 
 void display()
 {
-    char walls[11] = {' ', '^', '_', 222, 221, 191, 217, 192, 218, '=', 186};
+    char walls[11] = {' ', '^', '_', ']', (char)221, (char)191, (char)217, 
+                      192, 218, '=', 186};
     char tokens[18] = {' ', '1','2','3','4','5','6','7','8','9',
                        'A','B','C','D','E','F','G','H'};
     
@@ -205,12 +206,13 @@ void display()
         {
             if(board[row][col].token == 0)
             {
-                cout << walls[board[row][col].walls-1];
+                cout << walls[board[row][col].walls];
             }
             else
             {
                 cout << tokens[board[row][col].token];
             }
+            cout << "  ";
         }
         cout << endl;
     }
