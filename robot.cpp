@@ -13,6 +13,7 @@ using namespace std;
 struct cell
 {
     bool occupied;
+    int token;
     bool hasRobot, left, up, right, down;
 };
     
@@ -31,7 +32,7 @@ struct robot{
     
 // Functions
     // move
-    bool move(char color, char direction, int &newx, int &newy);
+    bool move(robot& sent, char direction, int &newx, int &newy);
     // read in maps
     void readInMap();
     // display
@@ -57,10 +58,10 @@ int main()
     // Read the map(s)
     // Create all objects
     robot redBot(-1, -1, 'r');
-    robot orangeBot(-1, -1, 'r');
-    robot blueBot(-1, -1, 'r');
-    robot greenBot(-1, -1, 'r');
-    robot yellowBot(-1, -1, 'r');
+    robot orangeBot(-1, -1, 'o');
+    robot blueBot(-1, -1, 'b');
+    robot greenBot(-1, -1, 'g');
+    robot yellowBot(-1, -1, 'y');
     
     populate(redBot, orangeBot, blueBot, greenBot, yellowBot);
     
@@ -73,13 +74,34 @@ int main()
             cout << "Enter move: ";
             cin >> color;
             cin >> direction;
-            if(color == 'r'){oldx = redBot.xPos;oldy = redBot.yPos;}
-            if(color == 'o'){oldx = orangeBot.xPos;oldy =   orangeBot.yPos;}
-            if(color == 'b'){oldx = blueBot.xPos;oldy = blueBot.yPos;}
-            if(color == 'g'){oldx = greenBot.xPos;oldy = greenBot.yPos;}
-            if(color == 'y'){oldx = yellowBot.xPos;oldy = yellowBot.yPos;}
-            // Move (c, d)
-            move(color, direction, newx, newy);
+            switch(color)
+            {
+               case 'r':
+                  oldx = redBot.xPos;
+                  oldy = redBot.yPos;
+                  move(redBot, direction, newx, newy);
+                  break;
+               case 'o':
+                  oldx = orangeBot.xPos;
+                  oldy = orangeBot.yPos;
+                  move(orangeBot, direction, newx, newy);
+                  break;
+               case 'b':
+                  oldx = blueBot.xPos;
+                  oldy = blueBot.yPos;
+                  move(blueBot, direction, newx, newy);
+                  break;
+               case 'y':
+                  oldx = yellowBot.xPos;
+                  oldy = yellowBot.yPos;
+                  move(yellowBot, direction, newx, newy);
+                  break;
+               case 'g':
+                  oldx = greenBot.xPos;
+                  oldy = greenBot.yPos;
+                  move(greenBot, direction, newx, newy);
+                  break;
+             }
             // update
             updateMap(color, oldx, oldy, newx, newy);
             // Check if win
@@ -97,39 +119,45 @@ void readInMap()
     fin.clear();
     fin.open("map1");
     
-    char cellContents;
+    int cellContents;
+    int tokes;
+    char dummy;
     
     fin >> cellContents;
+    fin >> dummy;
+    fin >> tokes;
+    fin >> dummy;
     
     for(int row = 0; row < 16 && fin.good(); row++)
     {
         for(int col = 0; col < 16 && fin.good(); col++)
         {
             board[row][col].occupied = false;
+            board[row][col].token = tokes;
             
-            if(cellContents == '1' || cellContents == '5' ||
-               cellContents == '8')
+            if(cellContents == 4 || cellContents == 7 ||
+               cellContents == 8 || cellContents == 10)
             {
                 board[row][col].left = true;
                 board[row][col].occupied = true;
             }
             
-            if(cellContents == '2' || cellContents == '6' ||
-               cellContents == '1')
+            if(cellContents == 1 || cellContents == 5 ||
+               cellContents == 8 || cellContents == 9)
             {
                 board[row][col].up = true;
                 board[row][col].occupied = true;
             }
             
-            if(cellContents == '3' || cellContents == '7' ||
-               cellContents == '2')
+            if(cellContents == 3 || cellContents == 5 ||
+               cellContents == 6 || cellContents == 10)
             {
                 board[row][col].right = true;
                 board[row][col].occupied = true;
             }
             
-            if(cellContents == '4' || cellContents == '8' ||
-               cellContents == '3')
+            if(cellContents == 2 || cellContents == 6 ||
+               cellContents == 7 || cellContents == 9)
             {
                 board[row][col].down = true;
                 board[row][col].occupied = true;
@@ -137,6 +165,9 @@ void readInMap()
         }
         
         fin >> cellContents;
+        fin >> dummy;
+        fin >> tokes;
+        fin >> dummy;
     }
     
     fin.close();
@@ -166,7 +197,7 @@ void populate(robot &redBot,
        thisX = rand() % 16;
        thisY = rand() % 16;
        
-       while(!board[thisY][thisX].occupied)
+       while(board[thisY][thisX].token != 0)
        {
             thisX = rand() % 16;
             thisY = rand() % 16;
@@ -180,8 +211,42 @@ void populate(robot &redBot,
 }
 
 
-bool move(char color, char direction, int &newx, int &newy)
+bool move(robot &sent, char direction, int &newx, int &newy)
 {
+   char color = sent.robColor;
+   bool end = false;
+   if(direction = 'u')
+   {
+      while((!(board[sent.yPos][sent.xPos].up)) && (!(board[sent.yPos-1][sent.xPos].hasRobot)))
+      {
+         sent.yPos = sent.yPos-1;
+      }
+   }
+   
+   if(direction = 'd')
+   {
+      while((!(board[sent.yPos][sent.xPos].down)) && (!(board[sent.yPos+1][sent.xPos].hasRobot)))
+      {
+         sent.yPos = sent.yPos+1;
+      }      
+   }
+   
+   if(direction = 'l')
+   {
+      while((!(board[sent.yPos][sent.xPos].left)) && (!(board[sent.yPos][sent.xPos-1].hasRobot)))
+      {
+         sent.xPos = sent.xPos-1;
+      }      
+   }
+   
+   if(direction = 'u')
+   {
+      while((!(board[sent.yPos][sent.xPos].left)) && (!(board[sent.yPos][sent.xPos+1].hasRobot)))
+      {
+         sent.xPos = sent.xPos+1;
+      }       
+   }
+   
    return true;
 }
 
