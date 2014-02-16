@@ -1,1 +1,15 @@
 homage to ricochette robots, it will suck
+
+Breif description of the game:
+"Four double-sided boards are attached to a Plexiglas center-piece in one of 96 different combinations. Four plastic robots are randomly placed on four spaces on the board. The board is made up of 252 squares. Seventeen of these squares have different colored symbols. The rest are clear spaces, with some walls in between, and a wall running along the outside of the board. Seventeen tokens with symbols matching those on the board are shuffled and placed face down next to the board. Each turn, one of these tokens is flipped over to begin each round.
+
+During each round, all players look at the board and try to solve the puzzle. This puzzle consists of moving the robot that matches the color on the chip (the active robot) to the symbol on the board that matches the chip. (One chip is multi-colored, and allows any robot to be the “active” robot.) The goal is to move the robots using as few moves as possible. Robots have some restrictions on how they move. They may only move in a straight line, horizontally or vertically – and cannot stop unless they hit a wall or another robot. Once they do hit an object, they may then move at a right angle in either direction, etc. Other robots may be moved besides the active robot, to better help the active robot reach its goal. Every time the robot hits an obstacle, it counts as one move.
+
+Players silently look at the board, moving the robots in their head. When one player finds a solution, where they can move the active robot to the symbol, they announce out loud how many moves their solution entails. They then flip a one-minute timer. The other players now have this amount of time to “bid” lower – to find a solution in fewer moves then the announced number. Once the timer runs out, whichever player has “bid” the lowest number of moves finishes the round. They move the robots on the board, showing their solution to the other players. If their solution is incorrect, then the next lowest player goes, etc. If, however, their solution is correct, they take the chip that was flipped over, and the round ends – with all robots staying where they are. Once a player has reached a certain amount of chips (depending on amount of people playing), they win the game! "
+
+Issues: still in terminal, looks a bit shabby, chould use some better outputs.
+        input to move is a bit clunky, could be smoothed out
+        still only has one map, will add more later, they are a b**** to type in.
+        etc etc
+
+just send a issue if there is one, ill get on it soon enough.
